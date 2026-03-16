@@ -1,11 +1,11 @@
 import { connectToDatabase } from "@/helpers/server-helpers";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";      
+import bcrypt from "bcryptjs";      
 
-export const POST = async (request: Request) => {
+export async function POST(req: Request) {
     try {
-        const { name, email, password } = await request.json();
+        const { name, email, password } = await req.json();
 
         // Validate input
         if (!name || !email || !password) {
