@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-const handler = NextAuth({
+export const authOptions = NextAuth({
     adapter: PrismaAdapter(prisma),
     providers: [
         CredentialsProvider({
@@ -46,5 +46,7 @@ const handler = NextAuth({
         signIn: "/login",
     },
 });
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
